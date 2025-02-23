@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "", sans-serif;
+}
+
+body {
+  background-color: #F4F6F3;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+ul {
+  list-style: none;
+}
+
+@font-face {
+  font-family: "San Francisco";
+  src: url("/public/fonts/sf-pro-text-9.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  font-size: 16px;
+}
+
+/*# sourceMappingURL=main.css.map */
