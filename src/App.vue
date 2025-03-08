@@ -6,6 +6,11 @@
 </script>
 
 <style lang="sass">
-  // Set global css watcher in principal app file
-  @import "./assets/sass/main.sass"
+// Set type of preprocessor and base styles
+body
+  background-color: var(--neutral--color)
+
+.dark
+  background-color: var(--complementary--color)
+
 </style>
