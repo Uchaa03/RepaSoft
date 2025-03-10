@@ -4,33 +4,37 @@
     <p>Regístrate</p><p class="form__selected">Accede</p>
   </router-link>
   <form class="form" @submit.prevent="onSubmit">
-      <label class="field__label">Correo Electrónico</label>
-      <input
-          class="form__input"
-          type="email"
-          id="email"
-          v-model="email"
-          placeholder="Introduce tu Correo Electrónico"
-          @blur="validateEmail"
-      >
-      <span v-if="emailError" class="form__error">{{emailError}}</span>
-      <label class="field__label">Contraseña</label>
-      <input
-          class="form__input"
-          type="password"
-          id="password"
-          v-model="password"
-          placeholder="Introduce tu Contraseña"
-          @blur="validatePassword"
-      >
-      <span v-if="passwordError" class="form__error">{{passwordError}}</span>
+      <fieldset class="form__field">
+        <label class="field__label">Correo Electrónico</label>
+        <input
+            class="field__input"
+            type="email"
+            id="email"
+            v-model="email"
+            placeholder="Introduce tu Correo Electrónico"
+            @blur="validateEmail"
+        >
+        <span v-if="emailError" class="field__error">{{emailError}}</span>
+      </fieldset>
+      <fieldset class="form__field">
+        <label class="field__label">Contraseña</label>
+        <input
+            class="field__input"
+            type="password"
+            id="password"
+            v-model="password"
+            placeholder="Introduce tu Contraseña"
+            @blur="validatePassword"
+        >
+        <span v-if="passwordError" class="field__error">{{passwordError}}</span>
+      </fieldset>
       <button class="form__submit" type="submit" :disabled="!isFormValid">Accede</button>
   </form>
 </template>
 
 <script>
-import {validateEmail, validatePassword} from "@/helpers/validations.js";
-import login from "@/helpers/apiCalls.js";
+import {validateEmail, validatePasswordLogin} from "@/helpers/validations.js";
+import {login} from "@/helpers/apiCalls.js";
 
 export default {
   name: "LoginComponent",
@@ -55,7 +59,7 @@ export default {
       this.emailError = validateEmail(this.email);
     },
     validatePassword() {
-      this.passwordError = validatePassword(this.password);
+      this.passwordError = validatePasswordLogin(this.password);
     },
     //Call Backend submit
     onSubmit() {
@@ -73,7 +77,7 @@ export default {
   .form
     @include mixins.forms-display
 
-  .form__input
+  .field__input
     @include mixins.input-style
 
   .form__submit
