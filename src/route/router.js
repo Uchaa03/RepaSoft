@@ -1,15 +1,15 @@
 import {createRouter, createWebHistory} from "vue-router";
 import LandingView from "@/views/LandingView.vue";
-import LoginComponent from "@/components/forms/LoginComponent.vue";
-import RegisterComponent from "@/components/forms/RegisterComponent.vue";
-import ContactComponent from "@/components/forms/ContactComponent.vue";
+import LoginView from "@/views/LoginView.vue";
+import RegisterView from "@/views/RegisterView.vue";
+import ContactView from "@/views/ContactView.vue";
 
 //Create object routes
 const routes = [
     {path: "/", component: LandingView},
-    {path: "/login", component: LoginComponent},
-    {path: "/register", component: RegisterComponent},
-    {path: "/contact", component: ContactComponent},
+    {path: "/login", component: LoginView},
+    {path: "/register", component: RegisterView},
+    {path: "/contact", component: ContactView},
 
 ]
 
