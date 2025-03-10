@@ -38,7 +38,7 @@
           placeholder="Introduce tu Contraseña"
           @blur="validatePassword"
       />
-      <span v-if="passwordError" class="field__error">{{passwordError}}</span>
+      <span v-if="passwordError" class="field__error">{{actualPasswordError}}</span>
     </fieldset>
     <fieldset class="form__field">
       <label class="field__label">Confirmación de Contraseña</label>
@@ -52,13 +52,17 @@
       />
       <span v-if="confirmPasswordError" class="field__error">{{confirmPasswordError}}</span>
     </fieldset>
-    <button class="form__submit" type="submit" :disabled="!isFormValid">Regístrate</button>
+    <span v-if="registerError" class="field__error">{{registerError}}</span>
+    <button class="form__submit" type="submit" :disabled="!isFormValid || isLoading">
+      {{isLoading ? 'Registrando...' : 'Regístrate'}}
+    </button>
   </form>
 </template>
 
 <script>
 import { validateName, validateEmail, validatePasswordRegister, validateConfirmPassword } from "@/helpers/validations.js";
-import {register} from "@/helpers/apiCalls.js";
+import {useAuthStore} from "@/store/authstore.js";
+import {registerRequest} from "@/helpers/apiCalls.js";
 
 export default {
   name: "RegisterComponent",
@@ -73,6 +77,7 @@ export default {
       passwordError: "",
       confirmPasswordError: "",
       registerError: "",
+      isLoading: false,
     };
   },
   computed: {
@@ -102,12 +107,21 @@ export default {
     validateConfirmPassword() {
       this.confirmPasswordError = validateConfirmPassword(this.password, this.confirmPassword);
     },
-    onSubmit() {
-      register();
-      this.name = "";
-      this.email = "";
-      this.password = "";
-      this.confirmPassword = "";
+    async onSubmit() {
+      this.isLoading = true
+      this.registerError = ""
+
+      const res = await registerRequest(this.name, this.email, this.password);
+
+      if (res.success) {
+        const authStore = useAuthStore()
+        authStore.setAuthData(res.response)
+
+        this.$router.push("/panel")
+      }else {
+        this.registerError = res.error
+        this.isLoading = false
+      }
     },
   },
 };
