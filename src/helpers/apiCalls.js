@@ -45,3 +45,28 @@ export const registerRequest = async (name, email, password) => {
 export function sendMessage() {
     return console.log("Mensaje de contacto enviado")
 }
+
+
+//Change Password request
+export const changePasswordRequest = async (currentPassword, newPassword, clientToken) => {
+    try{
+        const response = await api.post("/client/change-password", {
+            current_password: currentPassword,
+            new_password: newPassword,
+        },{
+            headers: {
+                Authorization: `Bearer ${clientToken}`
+            }
+        })
+
+        return {
+            success: true,
+            response: response.data.message
+        }
+    }catch (error) {
+        return {
+            success: false,
+            status: error.response?.status,
+            error: error.response?.data?.message || 'Error al cambiar la contraseña'     }
+    }
+}

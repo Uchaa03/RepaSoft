@@ -29,7 +29,10 @@ export const useAuthStore = defineStore('auth', {
             localStorage.setItem('user_type', this.user_type)
             localStorage.setItem('change_password', JSON.stringify(this.change_password))
         },
-
+        updatePassword(state) {
+            this.change_password = state
+            localStorage.setItem('change_password', JSON.stringify(state));
+        },
         clearAuthData() {
             //Delete data when user logout
             this.access_token = null

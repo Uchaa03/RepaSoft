@@ -38,7 +38,7 @@
           placeholder="Introduce tu Contraseña"
           @blur="validatePassword"
       />
-      <span v-if="passwordError" class="field__error">{{actualPasswordError}}</span>
+      <span v-if="passwordError" class="field__error">{{passwordError}}</span>
     </fieldset>
     <fieldset class="form__field">
       <label class="field__label">Confirmación de Contraseña</label>

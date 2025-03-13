@@ -26,9 +26,9 @@
           placeholder="Introduce tu Contraseña"
           @blur="validatePassword"
       >
-      <span v-if="passwordError" class="field__error">{{actualPasswordError}}</span>
+      <span v-if="passwordError" class="field__error">{{passwordError}}</span>
     </fieldset>
-    <span v-if="loginError" class="field__error">{{changePasswordError}}</span>
+    <span v-if="loginError" class="field__error">{{loginError}}</span>
     <button class="form__submit" type="submit" :disabled="!isFormValid || isLoading">
       {{ isLoading ? 'Cargando...' : 'Accede' }}
     </button>

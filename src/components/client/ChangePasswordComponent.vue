@@ -23,7 +23,7 @@
           placeholder="Introduce tu Contraseña"
           @blur="validatePassword"
       />
-      <span v-if="passwordError" class="field__error">{{actualPasswordError}}</span>
+      <span v-if="passwordError" class="field__error">{{passwordError}}</span>
     </fieldset>
     <fieldset class="form__field">
       <label class="field__label">Confirmación de Contraseña</label>
@@ -46,7 +46,7 @@
 
 <script>
 import {validateConfirmPassword, validatePasswordLogin, validatePasswordRegister} from "@/helpers/validations.js";
-import {loginRequest} from "@/helpers/apiCalls.js";
+import {changePasswordRequest} from "@/helpers/apiCalls.js";
 import {useAuthStore} from "@/store/authstore.js";
 
 export default {
@@ -66,15 +66,14 @@ export default {
   computed: {
     //Reactive validation
     isFormValid() {
-      return !this.actualPassword && !this.actualPasswordError && this.password
-          && this.passwordError && this.confirmPassword && this.confirmPasswordError;
+      return !this.actualPasswordError && !this.passwordError && !this.confirmPasswordError &&
+          this.actualPassword && this.password && this.confirmPassword;
     }
   },
   methods: {
     //Ser errors validations
     validateActualPassword() {
-      this.actualPasswordError = validatePasswordLogin(this.password);
-      this.changePasswordError = ""
+      this.actualPasswordError = validatePasswordLogin(this.actualPassword);
     },
     validatePassword() {
       this.passwordError = validatePasswordRegister(this.password);
@@ -86,22 +85,22 @@ export default {
     async onSubmit() {
       this.isLoading = true;
       this.changePasswordError = ""
-      //Get pinia and route
+
+      //Get pinia
       const authStore = useAuthStore()
 
-      //Ger result of login
-      const res =  await loginRequest(this.email, this.password);
+
+      //Get result of login
+      const res =  await changePasswordRequest(this.actualPassword, this.password, authStore.access_token);
       if (res.success) {
-        //Store data result
-        authStore.setAuthData(res.response)
-        this.isLoading = false
-        if (res.response.user_type === 'technician') {
-          this.$router.push("/panel");
-        }else if (res.response.user_type === 'client') {
-          this.$router.push("/dashboard");
-        }
-      } else {
-        this.changePasswordError = res.error
+        authStore.updatePassword(false)
+
+        //When paseord change return to dashboard client
+        this.$router.push("/dashboard")
+      }else {
+        this.changePasswordError = res.status === 400
+            ? "La contraseña actual es incorrecta"
+            : res.error;
         this.isLoading = false
       }
     }
