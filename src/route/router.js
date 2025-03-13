@@ -7,6 +7,8 @@ import ChangePasswordView from "@/views/client/ChangePasswordView.vue";
 import PanelView from "@/views/technician/PanelView.vue";
 import DashboardView from "@/views/client/DashboardView.vue";
 import {useAuthStore} from "@/store/authstore.js";
+import CreateReparationView from "@/views/technician/CreateReparationView.vue";
+import ReparationsView from "@/views/ReparationsView.vue";
 
 //Create object routes
 const routes = [
@@ -17,6 +19,8 @@ const routes = [
     {path: "/change-password",meta: {requiresAuth: true}, component: ChangePasswordView},
     {path: "/panel",meta: {requiresAuth: true}, component: PanelView},
     {path: "/dashboard",meta: {requiresAuth: true}, component: DashboardView},
+    {path: "/create-reparation",meta: {requiresAuth: true}, component: CreateReparationView},
+    {path: "/reparations",meta: {requiresAuth: true}, component: ReparationsView},
 ]
 
 //Create component for router
