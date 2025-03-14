@@ -87,7 +87,7 @@ correo.
 
 La aplicación está desplegada y disponible en:
 
-- **URL Principal**: [https://repasoft12.up.railway.app](https://repasoft12.up.railway.app)
+- **URL Principal**: [Netlify App](https://repasoft.netlify.app/)
 - **API Endpoint**: [https://repasoft12.up.railway.app/api](https://repasoft12.up.railway.app/api)
 
 ### Credenciales de Prueba
