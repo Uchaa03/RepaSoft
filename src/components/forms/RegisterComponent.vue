@@ -15,6 +15,7 @@
           @blur="validateName"
       />
       <span v-if="nameError" class="field__error">{{nameError}}</span>
+      <span v-if="registerError" class="field__error">{{registerError}}</span>
     </fieldset>
     <fieldset class="form__field">
       <label class="field__label">Correo Electrónico</label>
@@ -52,7 +53,6 @@
       />
       <span v-if="confirmPasswordError" class="field__error">{{confirmPasswordError}}</span>
     </fieldset>
-    <span v-if="registerError" class="field__error">{{registerError}}</span>
     <button class="form__submit" type="submit" :disabled="!isFormValid || isLoading">
       {{isLoading ? 'Registrando...' : 'Regístrate'}}
     </button>
@@ -128,19 +128,19 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@use '@/assets/sass/utilities/mixins' as mixins
+  @use '@/assets/sass/utilities/mixins' as mixins
 
-.form
-  @include mixins.forms-display
-  padding: 2.5rem 7rem
+  .form
+    @include mixins.forms-display
+    padding: 2.5rem 7rem
 
-.field__input
-  @include mixins.input-style
-  margin: 0.1rem 0 1rem 0
+  .field__input
+    @include mixins.input-style
+    margin: 0.1rem 0 1rem 0
 
 
-.form__submit
-  @include mixins.create-button(18rem, 3.5rem, 2rem, bold)
-  margin-top: 1rem
-  align-self: flex-end
+  .form__submit
+    @include mixins.create-button(18rem, 3.5rem, 2rem, bold)
+    margin-top: 1rem
+    align-self: flex-end
 </style>

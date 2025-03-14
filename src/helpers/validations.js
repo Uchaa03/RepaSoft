@@ -50,7 +50,6 @@ export function validatePasswordRegister(password) {
     return "";
 }
 
-
 export function validateConfirmPassword(password, confirmPassword) {
     if (!confirmPassword) {
         return "Requerido";
@@ -69,4 +68,62 @@ export function validateMessage(message) {
     } else {
         return "";
     }
+}
+
+export function validateDeviceName(deviceName) {
+    if (!deviceName) {
+        return "Requerido";
+    } else if (deviceName.length < 3) {
+        return "Mín. 3 caracteres";
+    } else {
+        return "";
+    }
+}
+
+export function validateModel(model) {
+    if (!model) {
+        return "Requerido";
+    } else if (model.length < 2) {
+        return "Mín. 2 caracteres";
+    } else {
+        return "";
+    }
+}
+
+export function validateType(type) {
+    if (!type) {
+        return "Requerido";
+    } else {
+        return "";
+    }
+}
+
+export function validateDescription(description) {
+    if (!description) {
+        return "Requerido";
+    } else if (description.length < 10) {
+        return "Mín. 10 caracteres";
+    } else if (description.length > 500) {
+        return "Máx. 500 caracteres";
+    } else {
+        return "";
+    }
+}
+
+export function validatePhone(phone) {
+    if (!phone) {
+        return "Requerido";
+    } else if (!/^[+]?[\d\s-]{9}$/.test(phone)) {
+        return "Formato inválido";
+    }
+    return "";
+}
+
+export function validateAddress(address) {
+    if (!address) {
+        return "Requerido";
+    } else if (address.length < 10) {
+        return "Mín. 10 caracteres";
+    }
+    return "";
 }

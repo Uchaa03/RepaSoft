@@ -15,7 +15,7 @@ export default defineComponent({
 </script>
 
 <style lang="sass">
-// Set type of preprocessor and base styles
+
 body
   background-color: var(--neutral--color)
 </style>

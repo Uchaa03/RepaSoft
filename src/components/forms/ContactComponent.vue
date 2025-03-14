@@ -64,25 +64,25 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@use '@/assets/sass/utilities/mixins' as mixins
+  @use '@/assets/sass/utilities/mixins' as mixins
 
-.form
-  @include mixins.forms-display
-  padding: 2.5rem 7rem
+  .form
+    @include mixins.forms-display
+    padding: 2.5rem 7rem
 
-.field__input
-  @include mixins.input-style
-  margin: 0.1rem 0 2rem 0
+  .field__input
+    @include mixins.input-style
+    margin: 0.1rem 0 2rem 0
 
-.field__textarea
-  @include mixins.input-style
-  margin: 0.1rem 0 2rem 0
-  padding-top: 1rem
-  resize: none /* Deshabilita el redimensionamiento del textarea */
-  height: 10rem /* Define una altura inicial */
+  .field__textarea
+    @include mixins.input-style
+    margin: 0.1rem 0 2rem 0
+    padding-top: 1rem
+    resize: none /* Deshabilita el redimensionamiento del textarea */
+    height: 10rem /* Define una altura inicial */
 
-.form__submit
-  @include mixins.create-button(18rem, 3.5rem, 2rem, bold)
-  margin-top: 1rem
-  align-self: flex-end
+  .form__submit
+    @include mixins.create-button(18rem, 3.5rem, 2rem, bold)
+    margin-top: 1rem
+    align-self: flex-end
 </style>

@@ -1,5 +1,6 @@
 <template>
   <h1 class="form__title">Cambia tu contraseña</h1>
+  <!-- Simple form -->
   <form class="form" @submit.prevent="onSubmit">
     <fieldset class="form__field">
       <label class="field__label">Contraseña Actual</label>
@@ -11,6 +12,7 @@
           placeholder="Introduce la contraseña Generada"
           @blur="validateActualPassword"
       >
+      <!-- Show errors -->
       <span v-if="actualPasswordError" class="field__error">{{ actualPasswordError }}</span>
     </fieldset>
     <fieldset class="form__field">
@@ -109,18 +111,19 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@use '@/assets/sass/utilities/mixins' as mixins
+  @use '@/assets/sass/utilities/mixins' as mixins
 
-.form
-  @include mixins.forms-display
-  padding: 3rem 7rem
+  .form
+    @include mixins.forms-display
+    padding: 3rem 7rem
 
-.field__input
-  @include mixins.input-style
-  margin: 0.2rem 0 1.2rem 0
+  .field__input
+    @include mixins.input-style
+    margin: 0.2rem 0 1.2rem 0
 
-.form__submit
-  @include mixins.create-button(22rem, 3.5rem, 2rem, bold)
-  margin-top: 7rem
-  align-self: flex-end
+  .form__submit
+    @include mixins.create-button(22rem, 3.5rem, 2rem, bold)
+    margin-top: 7rem
+    align-self: flex-end
+
 </style>

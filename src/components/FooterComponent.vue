@@ -23,6 +23,7 @@ export default {
     padding: 0 14rem
     position: fixed
     bottom: 0
+    background-color: var(--neutral--color)
     box-shadow: 0px -10px 8px 1px rgba(20, 20, 20, 0.15)
 
     .footer__license

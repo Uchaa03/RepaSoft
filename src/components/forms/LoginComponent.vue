@@ -14,7 +14,9 @@
           placeholder="Introduce tu Correo Electrónico"
           @blur="validateEmail"
       >
+
       <span v-if="emailError" class="field__error">{{emailError}}</span>
+      <span v-if="loginError" class="field__error">{{loginError}}</span>
     </fieldset>
     <fieldset class="form__field">
       <label class="field__label">Contraseña</label>
@@ -26,9 +28,9 @@
           placeholder="Introduce tu Contraseña"
           @blur="validatePassword"
       >
+      <span v-if="loginError" class="field__error">{{loginError}}</span>
       <span v-if="passwordError" class="field__error">{{passwordError}}</span>
     </fieldset>
-    <span v-if="loginError" class="field__error">{{loginError}}</span>
     <button class="form__submit" type="submit" :disabled="!isFormValid || isLoading">
       {{ isLoading ? 'Cargando...' : 'Accede' }}
     </button>
@@ -96,16 +98,16 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@use '@/assets/sass/utilities/mixins' as mixins
+  @use '@/assets/sass/utilities/mixins' as mixins
 
-.form
-  @include mixins.forms-display
+  .form
+    @include mixins.forms-display
 
-.field__input
-  @include mixins.input-style
+  .field__input
+    @include mixins.input-style
 
-.form__submit
-  @include mixins.create-button(18rem, 3.5rem, 2rem, bold)
-  margin-top: 7rem
-  align-self: flex-end
+  .form__submit
+    @include mixins.create-button(18rem, 3.5rem, 2rem, bold)
+    align-self: flex-end
+    margin-top: 7rem
 </style>
