@@ -40,6 +40,7 @@
             @blur="validateName"
         />
         <span v-if="nameError" class="field__error">{{ nameError }}</span>
+        <span v-if="createError" class="field__error">{{ createError }}</span>
       </fieldset>
 
       <fieldset class="form__field">
@@ -77,9 +78,6 @@
         />
         <span v-if="addressError" class="field__error">{{ addressError }}</span>
       </fieldset>
-
-      <span v-if="createError" class="field__error">{{ createError }}</span>
-
       <footer class="client__form-buttons">
         <button type="button" class="client__back-button" @click="showCreateForm = false">
           Volver a Búsqueda
